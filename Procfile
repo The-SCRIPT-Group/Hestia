@@ -1,1 +1,1 @@
-web: python hestia/manage.py runserver
+web: python manage.py runserver
