@@ -1,5 +1,6 @@
 import csv
 from os import environ
+
 from requests import get
 
 
@@ -14,8 +15,8 @@ def locate(key):
         row_count = -1
 
         for row in csv_reader:
-            row_count+=1
-            if(row_count == 0):
+            row_count += 1
+            if row_count == 0:
                 for field in row:
                     fields.append(field)
             else:
@@ -23,6 +24,6 @@ def locate(key):
                     print("Participant found!\n")
                     return row
                 else:
-                    counter+=1
+                    counter += 1
         if counter == row_count:
             return 0

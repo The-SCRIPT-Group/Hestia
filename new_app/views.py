@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, View
-from django.shortcuts import render, get_object_or_404, redirect
-from new_app.forms import PageForm
+from django.views.generic import View
+
 from new_app.csv_code import locate
+from new_app.forms import PageForm
+
 
 class PageView(View):
 
@@ -10,10 +11,10 @@ class PageView(View):
         found = False
         csv_form = PageForm()
         msg = ""
-        context={
-            'csv_form':csv_form,
-            'found':found,
-            'msg':msg
+        context = {
+            'csv_form': csv_form,
+            'found': found,
+            'msg': msg
         }
         return render(request, 'page.html', context)
 
@@ -28,18 +29,18 @@ class PageView(View):
             if row == 0:
                 found = False
                 msg = "Data not found!"
-                context={
-                'found':found,
-                'msg':msg
+                context = {
+                    'found': found,
+                    'msg': msg
                 }
                 return render(request, 'page.html', context)
             else:
                 print(row)
-                context={
-                'name':row[0],
-                'branch':row[1],
-                'event_date':row[2],
-                'found':found
-                    }
+                context = {
+                    'name': row[0],
+                    'branch': row[1],
+                    'event_date': row[2],
+                    'found': found
+                }
 
                 return render(request, 'page.html', context)

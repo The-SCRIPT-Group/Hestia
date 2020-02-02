@@ -24,7 +24,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'efm4b1zvclyoxu8h0uz6&*kepqeg%_17%=^4i9kxs!2yld2ou3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DATABASE_URL") == None
+DEBUG = os.getenv("DATABASE_URL") is None
 
 ALLOWED_HOSTS = [
     'tsg-certificate.herokuapp.com'
