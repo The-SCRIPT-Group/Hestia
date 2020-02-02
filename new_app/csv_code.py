@@ -1,7 +1,12 @@
 import csv
+from os import environ
+from requests import get
 
 
 def locate(key):
+    with open('participant.csv', 'w') as f:
+        f.write(get(environ["CSV_URL"]).text)
+
     counter = 0
     fields = []
     with open('participant.csv', 'r') as csv_file:
