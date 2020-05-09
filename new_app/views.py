@@ -25,7 +25,7 @@ class PageView(View):
             found = True
             key = form.cleaned_data.get('key')
             data = locate(key)
-            if data == 0:
+            if not bool(data):
                 found = False
                 msg = "Data not found!"
                 context = {

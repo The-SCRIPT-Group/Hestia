@@ -23,6 +23,8 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'efm4b1zvclyoxu8h0uz6&*kepqeg%_17%=^4i9kxs!2yld2ou3'
 
+os.environ["CSV_URL"] = 'http://csv.thescriptgroup.in/ranksortedfinal.csv'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DATABASE_URL") is None
 
