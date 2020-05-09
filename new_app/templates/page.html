@@ -4,9 +4,9 @@
     <div class="container">
         {% if found %}
             <h1>Your certificate:</h1>
-            <p>Name: {{ name }}</p>
-            <p>Branch: {{ branch }}</p>
-            <p>Event Date: {{ event_date }}</p>
+            {% for key, value in data.items %}
+                <p>{{ key }}: {{ value }}</p>
+            {% endfor %}
         {% else %}
             <form class="form" method="post">
                 {% csrf_token %}

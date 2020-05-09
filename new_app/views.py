@@ -24,9 +24,8 @@ class PageView(View):
         if form.is_valid():
             found = True
             key = form.cleaned_data.get('key')
-            print(key)
-            row = locate(key)
-            if row == 0:
+            data = locate(key)
+            if data == 0:
                 found = False
                 msg = "Data not found!"
                 context = {
@@ -35,12 +34,10 @@ class PageView(View):
                 }
                 return render(request, 'page.html', context)
             else:
-                print(row)
+                print(data)
                 context = {
-                    'name': row[0],
-                    'branch': row[1],
-                    'event_date': row[2],
-                    'found': found
+                    'data':data,
+                    'found':found
                 }
 
                 return render(request, 'page.html', context)

@@ -7,10 +7,10 @@ from requests import get
 def locate(key):
     with open('participant.csv', 'w') as f:
         f.write(get(environ["CSV_URL"]).text)
-
+    participant_data = {}
     counter = 0
     fields = []
-    with open('participant.csv', 'r') as csv_file:
+    with open('ranksortedfinal.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         row_count = -1
 
@@ -20,9 +20,11 @@ def locate(key):
                 for field in row:
                     fields.append(field)
             else:
-                if row[3] == str(key):
+                if row[6] == str(key):
                     print("Participant found!\n")
-                    return row
+                    for i in range(0, len(fields)):
+                        participant_data[fields[i]] = row[i]
+                    return participant_data
                 else:
                     counter += 1
         if counter == row_count:

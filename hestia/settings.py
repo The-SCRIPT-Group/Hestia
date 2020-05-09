@@ -27,7 +27,7 @@ SECRET_KEY = 'efm4b1zvclyoxu8h0uz6&*kepqeg%_17%=^4i9kxs!2yld2ou3'
 DEBUG = os.getenv("DATABASE_URL") is None
 
 ALLOWED_HOSTS = [
-    'tsg-certificate.herokuapp.com'
+    'tsg-certificate.herokuapp.com', '127.0.0.1'
 ]
 
 
