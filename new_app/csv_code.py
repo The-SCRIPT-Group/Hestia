@@ -4,8 +4,8 @@ import os
 from requests import get
 
 
-def locate(key):
-    with open('participant.csv', 'w') as f:
+def locate(key, key_pos):
+    with open('participant.csv', 'w', encoding="utf-8") as f:
         f.write(get(environ["CSV_URL"]).text)
     participant_data = {}
     counter = 0
@@ -21,7 +21,7 @@ def locate(key):
                     fields.append(field)
             else:
                 if len(row) != 0:
-                    if row[6] == str(key):
+                    if row[key_pos] == str(key):
                         print("Participant found!\n")
                         for i in range(0, len(fields)):
                             participant_data[fields[i]] = row[i]

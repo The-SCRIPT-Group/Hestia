@@ -3,7 +3,7 @@ from django.views.generic import View
 
 from new_app.csv_code import locate
 from new_app.forms import PageForm
-
+import os
 
 class PageView(View):
 
@@ -24,7 +24,15 @@ class PageView(View):
         if form.is_valid():
             found = True
             key = form.cleaned_data.get('key')
-            data = locate(key)
+            event = form.cleaned_data.get('event')
+            data = {}
+            if (event == 'codex-dec'):
+                os.environ["CSV_URL"] = 'http://csv.thescriptgroup.in/Participants.csv'
+                data = locate(key, 3)
+            elif (event == 'bov'):
+                os.environ["CSV_URL"] = 'http://csv.thescriptgroup.in/ranksortedfinal.csv'
+                data = locate(key, 6)
+
             if not bool(data):
                 found = False
                 msg = "Data not found!"

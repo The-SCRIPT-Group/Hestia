@@ -50,7 +50,7 @@ body {
 }
 
 .form input {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
@@ -62,9 +62,18 @@ body {
 }
 
 .form select {
+    width: 350px;
+    height: 48px;
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    text-align: center;
+    text-align-last: center;
+}
+
+.form option{
+    text-align: center;
+    text-align-last: center;
 }
 
 .form button {

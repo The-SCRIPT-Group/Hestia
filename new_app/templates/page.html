@@ -10,6 +10,8 @@
         {% else %}
             <form class="form" method="post">
                 {% csrf_token %}
+                {{ csv_form.event }}<br>
+
                 {{ csv_form.key }}
                 <br>
                 <input type="submit" class="btn btn-lg btn-primary btn-block center" name="" value="Submit">
