@@ -42,7 +42,6 @@ class PageView(View):
                 }
                 return render(request, 'page.html', context)
             else:
-                print(data)
                 context = {
                     'data':data,
                     'found':found
