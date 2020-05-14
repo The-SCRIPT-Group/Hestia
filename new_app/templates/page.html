@@ -7,11 +7,11 @@
             {% for key, value in data.items %}
                 <p>{{ key }}: {{ value }}</p>
             {% endfor %}
+            <a class="btn btn-md btn-primary" href="{{ certificate }}">Download Your Certificate Here</a>
         {% else %}
             <form class="form" method="post">
                 {% csrf_token %}
                 {{ csv_form.event }}<br>
-
                 {{ csv_form.key }}
                 <br>
                 <input type="submit" class="btn btn-lg btn-primary btn-block center" name="" value="Submit">

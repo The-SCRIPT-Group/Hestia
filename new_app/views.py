@@ -42,9 +42,11 @@ class PageView(View):
                 }
                 return render(request, 'page.html', context)
             else:
+                cert_url = 'https://certificates.thescriptgroup.in/Battle-of-Vars/' + str(data['Credential Id']) + '.jpg'
                 context = {
                     'data':data,
-                    'found':found
+                    'found':found,
+                    'certificate':cert_url
                 }
 
                 return render(request, 'page.html', context)
