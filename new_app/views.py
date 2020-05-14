@@ -29,13 +29,11 @@ class PageView(View):
             data = {}
             folder = ''
             if event == 'codex-dec':
-                os.environ["CSV_URL"] = 'http://csv.thescriptgroup.in/Participants.csv'
                 folder = 'CodeX-December-2019'
-                data = locate(key, 3)
+                data = locate('Participants.csv', key, 3)
             elif event == 'bov':
-                os.environ["CSV_URL"] = 'http://csv.thescriptgroup.in/ranksortedfinal.csv'
                 folder = 'Battle-of-Vars'
-                data = locate(key, 6)
+                data = locate('ranksortedfinal.csv', key, 6)
 
             if not bool(data):
                 found = False
