@@ -5,6 +5,7 @@ from new_app.csv_code import locate
 from new_app.forms import PageForm
 import os
 
+
 class PageView(View):
 
     def get(self, request, *args, **kwargs):
@@ -26,11 +27,14 @@ class PageView(View):
             key = form.cleaned_data.get('key')
             event = form.cleaned_data.get('event')
             data = {}
-            if (event == 'codex-dec'):
+            folder = ''
+            if event == 'codex-dec':
                 os.environ["CSV_URL"] = 'http://csv.thescriptgroup.in/Participants.csv'
+                folder = 'CodeX-December-2019'
                 data = locate(key, 3)
-            elif (event == 'bov'):
+            elif event == 'bov':
                 os.environ["CSV_URL"] = 'http://csv.thescriptgroup.in/ranksortedfinal.csv'
+                folder = 'Battle-of-Vars'
                 data = locate(key, 6)
 
             if not bool(data):
@@ -42,11 +46,12 @@ class PageView(View):
                 }
                 return render(request, 'page.html', context)
             else:
-                cert_url = 'https://certificates.thescriptgroup.in/Battle-of-Vars/' + str(data['Credential Id']) + '.jpg'
+                cert_url = f'https://certificates.thescriptgroup.in/{folder}/' + str(
+                    data['Credential Id']) + '.jpg'
                 context = {
-                    'data':data,
-                    'found':found,
-                    'certificate':cert_url
+                    'data': data,
+                    'found': found,
+                    'certificate': cert_url
                 }
 
                 return render(request, 'page.html', context)

@@ -24,7 +24,7 @@ def locate(key, key_pos):
                     if row[key_pos] == str(key):
                         # print("Participant found!\n")
                         for i in range(0, len(fields)):
-                            if (fields[i] == 'Name' or fields[i] == 'Credential Id'):
+                            if fields[i] == 'Name' or fields[i] == 'Credential Id':
                                 participant_data[fields[i]] = row[i]
                         return participant_data
                     else:
