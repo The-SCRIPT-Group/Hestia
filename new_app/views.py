@@ -29,7 +29,7 @@ class PageView(View):
             data = {}
             folder = ''
             if event == 'codex-dec':
-                folder = 'CodeX-Dec-2019'
+                folder = 'CodeX-December-2019'
                 data = locate('Participants.csv', key, 3)
             elif event == 'bov':
                 folder = 'Battle-of-Vars'
