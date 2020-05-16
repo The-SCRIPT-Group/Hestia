@@ -7,7 +7,9 @@
             {% for key, value in data.items %}
                 <p>{{ key }}: {{ value }}</p>
             {% endfor %}
-            <a class="btn btn-md btn-primary" href="{{ certificate }}">Download Your Certificate Here</a>
+            {% if cert_available %}
+                <a class="btn btn-md btn-primary" href="{{ certificate }}">Download Your Certificate Here</a>
+            {% endif %}
         {% else %}
             <form class="form" method="post">
                 {% csrf_token %}
