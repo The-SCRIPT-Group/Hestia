@@ -24,14 +24,12 @@ class PageView(View):
 
         if form.is_valid():
             found = True
-            cert_available = True
             key = form.cleaned_data.get('key')
             event = form.cleaned_data.get('event')
             data = {}
             folder = ''
             if event == 'codex-dec':
-                folder = 'CodeX-December-2019'
-                cert_available = False
+                folder = 'CodeX-Dec-2019'
                 data = locate('Participants.csv', key, 3)
             elif event == 'bov':
                 folder = 'Battle-of-Vars'
@@ -43,7 +41,6 @@ class PageView(View):
                 context = {
                     'found': found,
                     'msg': msg,
-                    'cert_available': cert_available
                 }
             else:
                 cert_url = f'https://certificates.thescriptgroup.in/{folder}/' + str(
@@ -52,7 +49,6 @@ class PageView(View):
                     'data': data,
                     'found': found,
                     'certificate': cert_url,
-                    'cert_available': cert_available
                 }
 
             return render(request, 'page.html', context)
