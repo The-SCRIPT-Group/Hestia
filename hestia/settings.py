@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+import socket
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
@@ -23,14 +25,15 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'efm4b1zvclyoxu8h0uz6&*kepqeg%_17%=^4i9kxs!2yld2ou3'
 
-os.environ["CSV_URL"] = 'http://csv.thescriptgroup.in/ranksortedfinal.csv'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DATABASE_URL") is None
+DEBUG = socket.gethostname() == 'thescriptgroup'
 
 ALLOWED_HOSTS = [
-    'tsg-certificate.herokuapp.com', '127.0.0.1'
+    'verify.thescriptgroup.in'
 ]
+
+if DEBUG:
+    ALLOWED_HOSTS.append('127.0.0.1')
 
 
 # Application definition
