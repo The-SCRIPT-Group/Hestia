@@ -15,7 +15,7 @@ server {
         root /var/www/html;
     }
     location / {
-        return 301 https://verify.thescriptgroup.in$request_uri;
+        return 301 https://verify.thescriptgroup.in\$request_uri;
     }
 }
 
@@ -28,7 +28,7 @@ server {
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     location /static {
-        root /home/hestia/hestia;
+        root /home/deploy/Hestia/new_app;
         try_files \$uri \$uri/ =404;
     }
 
@@ -42,15 +42,31 @@ server {
         proxy_set_header   X-Forwarded-Proto    \$scheme;
     }
 }
+
 EOF
 sudo ln -s /etc/nginx/sites-available/verify.thescriptgroup.in /etc/nginx/sites-enabled/verify.thescriptgroup.in
 sudo rm -fv /etc/nginx/sites-{available,enabled}/default
 sudo nginx -s reload
+
+cat << EOF | sudo tee /etc/systemd/system/hestia.service
+[Unit]
+Description=Deploy Hestia server
+After=network.target
+
+[Service]
+User=deploy
+WorkingDirectory=/home/deploy/Hestia
+ExecStart=/home/deploy/Hestia/venv/bin/gunicorn --workers=2 hestia.wsgi -b :8001
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable hestia
+echo "systemd unit `hestia` is setup, start it whenever ready"
 echo '30 2 * * * /usr/bin/certbot renew --noninteractive --renew-hook "/usr/sbin/nginx -s reload" >> /var/log/le-renew.log' > /tmp/cron
 sudo crontab /tmp/cron
 rm -v /tmp/cron
 cd - || exit
-git clone https://github.com/The-SCRIPT-Group/hestia.git
-cd verify || exit
-pip3 install -r requirements.txt
 echo "Setup your configuration file and run the application! (make sure its running on port 8001"
