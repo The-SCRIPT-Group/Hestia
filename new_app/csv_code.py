@@ -4,7 +4,7 @@ from requests import get
 
 
 def locate(filename: str, key, key_pos):
-    response = get(f'https://csv.thescriptgroup.in/{filename}')
+    response = get(f'https://csv.thescriptgroup.in/{filename}', verify=False)
     participant_data = {}
     counter = 0
     fields = []
